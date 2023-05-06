@@ -5,20 +5,20 @@
 
 constexpr cor3ntin::encoding::text_encoding def{};
 static_assert(def.mib() == cor3ntin::encoding::text_encoding::id::unknown);
-static_assert(def.name() == nullptr);
+static_assert(def.name() == std::string_view{});
 static_assert(def == def);
 
 constexpr cor3ntin::encoding::text_encoding other{cor3ntin::encoding::text_encoding::id::other};
 static_assert(other.mib() == cor3ntin::encoding::text_encoding::id::other);
-static_assert(other.name() == nullptr);
+static_assert(other.name() == std::string_view{});
 
 constexpr cor3ntin::encoding::text_encoding unknown{cor3ntin::encoding::text_encoding::id::unknown};
 static_assert(unknown.mib() == cor3ntin::encoding::text_encoding::id::unknown);
-static_assert(unknown.name() == nullptr);
+static_assert(unknown.name() == std::string_view{});
 
 constexpr cor3ntin::encoding::text_encoding empty{""};
 static_assert(empty.mib() == cor3ntin::encoding::text_encoding::id::other);
-static_assert(empty.name() == nullptr);
+static_assert(empty.name() == std::string_view{});
 
 void print(const cor3ntin::encoding::text_encoding& c) {
     if(c.name()) {
@@ -55,11 +55,11 @@ void runtime_tests() {
     assert(def1 == def2);
     cor3ntin::encoding::text_encoding wtf8("WTF-8");
     print(wtf8);
-    assert(wtf8.name() != nullptr && wtf8.name() == "WTF-8"sv);
+    assert(wtf8.name() == "WTF-8"sv);
     assert(wtf8.mib() == cor3ntin::encoding::text_encoding::id::other);
     cor3ntin::encoding::text_encoding wtf8_2("WTF8");
     print(wtf8_2);
-    assert(wtf8_2.name() != nullptr && wtf8_2.name() == "WTF8"sv);
+    assert(wtf8_2.name() == "WTF8"sv);
     assert(wtf8_2.mib() == cor3ntin::encoding::text_encoding::id::other);
     assert(wtf8 == wtf8_2);
 #if __cpp_lib_ranges_contains
