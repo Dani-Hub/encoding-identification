@@ -201,10 +201,7 @@ public:
     }
 
     constexpr const char* name() const noexcept {
-        if(name_[0] != '\0') {
-            return name_;
-        }
-        return nullptr;
+        return name_;
     }
 
     constexpr alias_view aliases() const noexcept {
